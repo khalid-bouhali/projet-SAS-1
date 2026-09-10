@@ -266,6 +266,65 @@ function AfficherTikets(){
         }
 }
 
+//annuler ticket 
+function AnnulerTiket(){
+
+    let annuler = Number(prompt("Identifiant du ticket : "));
+
+    for (let i = 0; i < tickets.length; i++){
+
+        if (annuler === tickets[i].id){
+
+            for (let j = 0; j < trips.length; j++){
+
+                if (tickets[i].TripId === trips[j].id){
+
+                    trips[j].availableSeats++;
+
+                    tickets.splice(i, 1);
+
+                    console.log("Ticket annulé avec succès.");
+
+                    return;
+                }
+            }
+        }
+    }
+
+    console.log("Ticket introuvable.");
+}
+
+//chercher
+function RechercherTicket(){
+    let search = prompt("Nom du passager : ")
+    for ( let i = 0 ; i < tickets.length ; i++){
+        if ( search === tickets[i].PassengerName ){
+            console.log("=== TICKETS ===");
+            console.log("Ticket#" + tickets[i].id);
+            console.log("Passager : " + tickets[i].PassengerName);
+            console.log("Trajet : " + trips[i].departure + " → " + trips[i].destination);
+            console.log("Place : " + tickets[i].SeatNumber );
+            console.log("Prix :" + tickets[i].Price + " DH");
+            return;
+        }
+    }
+    console.log( `Aucun tiket sous ce nom ${search}`);
+}
+
+//filter
+function FiltrerTrajets(){
+    let filter = prompt(" Ville de départ : ")
+    for( i = 0 ; i < trips.length ; i++){
+        if ( filter === trips[i].departure){
+            console.log(trips[i].departure + " → " + trips[i].destination)
+        }
+    }
+}
+
+//trier
+function TrierTrajets(){
+    
+}
 
 let choix; 
 do{

@@ -1,6 +1,6 @@
 const prompt = require('prompt-sync')();
 
-//affichage
+//trips
 const trips = [
     {
         id: 1,
@@ -184,6 +184,7 @@ const trips = [
     }
 ];
 
+//afficher trajets
 function AfficherTrajet(){
          console.log("       === TRAJETS DISPONIBLES === ")
 
@@ -229,6 +230,7 @@ for( let i = 0 ; i < trips.length ; i++){
         tickets.push(ticket);
 console.log(`
                 Ticket acheté avec succès.
+
                 Ticket #${ticket.id}
                 Passager : ${ticket.PassengerName}
                 Trajet : ${trips[i].departure} → ${trips[i].destination}
@@ -308,15 +310,15 @@ function RechercherTicket(){
             return;
         }
     }
-    console.log( `Aucun tiket sous ce nom ${search}`);
+    console.log( `Aucun tiket sous le nom ${search}`);
 }
 
 //filter
 function FiltrerTrajets(){
     let filter = prompt(" Ville de départ : ")
-    for( i = 0 ; i < trips.length ; i++){
+    for( let i = 0 ; i < trips.length ; i++){
         if ( filter === trips[i].departure){
-            console.log(trips[i].departure + " → " + trips[i].destination)
+            console.log(trips[i].departure + " → " + trips[i].destination + " : " + trips[i].price + " DH")
         }
     }
 }
@@ -324,7 +326,20 @@ function FiltrerTrajets(){
 //trier
 function TrierTrajets(){
     
-}
+    for ( let i = 0 ; i < (trips.length) - 1 ; i++){
+        let min = i;
+        for ( let j = i + 1 ; j < trips.length ; j++){
+            if ( trips[j].price < trips[min].price) {
+                min = j;
+            }
+        }
+        if ( min !== i) {
+            [trips[i] , trips[min]] = [trips[min] , trips[i]]
+        }
+    console.log(trips[i].departure + " → " + trips[i].destination +
+                 " : " + trips[i].price + " DH")
+    }
+};
 
 let choix; 
 do{

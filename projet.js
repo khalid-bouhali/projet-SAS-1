@@ -339,6 +339,20 @@ function TrierTrajets(){
     console.log(trips[i].departure + " → " + trips[i].destination +
                  " : " + trips[i].price + " DH")
     }
+}
+
+//stats
+function Statistiques(){
+    console.log("==Total de tickets vendus==");
+
+    console.log( "Nombre total de tickets : " + tickets.length );
+
+    console.log("=Affaires total=")
+    let total = 0
+    for ( i = 0 ; i < tickets.length ; i++){
+        total += tickets[i].Price;
+    }
+    console.log("Chiffre d'affaires total : " + total + "DH")
 };
 
 let choix; 
@@ -354,6 +368,7 @@ console.log(`
     5. Rechercher un ticket 
     6. Filtrer les trajets 
     7. Trier les trajets 
+    8. Statistiques 
     0. Quitter`);
 
       choix = Number(prompt("choisir de la liste au-dessus  :"))
@@ -379,6 +394,8 @@ console.log(`
             TrierTrajets();
     }else if ( choix === 0){
             console.log("Au revoir !")    
+    }else if (choix === 8) {
+            Statistiques();
     }else{
         console.log("Choix non valide !")
     }

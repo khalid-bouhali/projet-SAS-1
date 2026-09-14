@@ -189,13 +189,13 @@ function AfficherTrajet(){
          console.log("       === TRAJETS DISPONIBLES === ")
 
         for( let i= 0 ; i<trips.length ; i++){
-        console.log(`
-        # ${trips[i].id}
-        ${trips[i].departure} → ${trips[i].destination}
-        -Départ : ${trips[i].departureTime}
-        -Arrivée : ${trips[i].arrivalTime}
-        -Prix : ${trips[i].price}
-        -Places disponibles : ${trips[i].availableSeats} `);
+            console.log(`
+                # ${trips[i].id}
+                ${trips[i].departure} → ${trips[i].destination}
+                -Départ : ${trips[i].departureTime}
+                -Arrivée : ${trips[i].arrivalTime}
+                -Prix : ${trips[i].price} DH
+                -Places disponibles : ${trips[i].availableSeats} `);
         }
 };
 
@@ -205,7 +205,7 @@ let ticketid = 1
 const tickets =[];
 
 function acheterTiket(){
-    let n = prompt("Nom du passager  :");
+    let n = prompt("Nom du passager  :").toLowerCase();
     let t = Number(prompt("Identifiant du trajet  :"));
 
 
@@ -298,7 +298,7 @@ function AnnulerTiket(){
 
 //chercher
 function RechercherTicket(){
-    let search = prompt("Nom du passager : ")
+    let search = prompt("Nom du passager : ").toLowerCase();
     for ( let i = 0 ; i < tickets.length ; i++){
         if ( search === tickets[i].PassengerName ){
             console.log("=== TICKETS ===");
@@ -315,11 +315,16 @@ function RechercherTicket(){
 
 //filter
 function FiltrerTrajets(){
-    let filter = prompt(" Ville de départ : ")
+    let trouve = false
+    let ville = prompt(" Ville de départ : ").toLowerCase();
     for( let i = 0 ; i < trips.length ; i++){
-        if ( filter === trips[i].departure){
+        if ( ville === trips[i].departure.toLowerCase()){
             console.log(trips[i].departure + " → " + trips[i].destination + " : " + trips[i].price + " DH")
+            trouve = true;
         }
+    }
+    if ( trouve == false){
+        console.log(`Aucun trajet trouvée pour ${ville}`)
     }
 }
 
